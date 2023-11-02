@@ -39,7 +39,7 @@ model = Sequential()
 model.add(Embedding(maxWordsCount, 256, input_length=inp_words))
 model.add(LSTM(128, activation='tanh', return_sequences=True))
 model.add(Bidirectional(LSTM(64, activation='tanh')))  # Добавление слоя Bidirectional LSTM
-model.add(Dense(2, activation='softmax'))
+model.add(Dense(maxWordsCount, activation='softmax'))
 model.summary()
 
 model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
@@ -47,7 +47,7 @@ model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], opti
 history = model.fit(X, Y, batch_size=32, epochs=150)
 
 
-def buildPhrase(texts, max_len=150):
+def buildPhrase(texts, max_len=500):
     res = texts
     token_list = tokenizer.texts_to_sequences([texts])[0]
     while len(res.split()) < max_len:
