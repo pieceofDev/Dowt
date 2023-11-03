@@ -17,7 +17,7 @@ with open('text.txt', 'r', encoding='utf-8') as f:
 maxWordsCount = 5000
 
 # Обновленная конфигурация токенизатора
-tokenizer = Tokenizer(num_words=maxWordsCount, filters='!–"—#$%&()*+-/:;<=>?@[\\]^_`{|}~\t\n\r«»',
+tokenizer = Tokenizer(num_words=maxWordsCount, filters='!–—#$%&()*+-/:;<=>?@[\\]^_{|}~\t\n\r«»',
                       lower=True, split=' ', char_level=False)
 tokenizer.fit_on_texts([texts])
 
@@ -69,7 +69,8 @@ def buildPhrase(texts, max_len=500):
     return output
 
 
-res = buildPhrase("Привет. Рад, что ты обратился ко мне за советом. По данным за последний месяц, "
-                  "твой доход составил 3000 долларов, а расходы - 3000 долларов, "
-                  "включая 2000 долларов на регулярные платежи и 1000 долларов на накопления.")
+res = buildPhrase("Hi. I'm glad you reached out to me for advice. According to last month, "
+                  "your income was $400 dollars and your expenses were $200 dollars. Of that, "
+                  "$100 dollars you spent on miscellaneous categories, $50 dollars on regular payments, "
+                  "and $50 dollars on savings.")
 print(res)
