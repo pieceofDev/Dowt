@@ -1,13 +1,14 @@
 import os
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
 import numpy as np
 
 from keras.layers import Dense, Embedding
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.src.layers import LSTM, Bidirectional
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 
 # Открытие файла с использованием конструкции with для автоматического закрытия файла после завершения операций
 with open('text.txt', 'r', encoding='utf-8') as f:
@@ -47,7 +48,7 @@ model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], opti
 history = model.fit(X, Y, batch_size=32, epochs=150)
 
 
-def buildPhrase(texts, max_len=500):
+def build_phrase(texts, max_len=500):
     res = texts
     token_list = tokenizer.texts_to_sequences([texts])[0]
     while len(res.split()) < max_len:
@@ -69,8 +70,9 @@ def buildPhrase(texts, max_len=500):
     return output
 
 
-res = buildPhrase("Hi. I'm glad you reached out to me for advice. According to last month, "
-                  "your income was $400 dollars and your expenses were $200 dollars. Of that, "
-                  "$100 dollars you spent on miscellaneous categories, $50 dollars on regular payments, "
-                  "and $50 dollars on savings.")
-print(res)
+while True:
+    phrase_begin = input("You can put data: ")
+    result = build_phrase(phrase_begin)
+    print(result)
+    if phrase_begin.lower == "stop":
+        break

@@ -1,12 +1,13 @@
 import os
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
 import numpy as np
 
 from keras.layers import Dense, SimpleRNN, Input, Embedding
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 
 with open('text.txt', 'r', encoding='utf-8') as f:
     texts = f.read()
@@ -41,7 +42,7 @@ model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], opti
 history = model.fit(X, Y, batch_size=32, epochs=150)
 
 
-def buildPhrase(texts, max_len=150):
+def build_phrase(texts, max_len=150):
     res = texts
     token_list = tokenizer.texts_to_sequences([texts])[0]
     while len(res.split()) < max_len:
@@ -63,8 +64,9 @@ def buildPhrase(texts, max_len=150):
     return output
 
 
-res = buildPhrase("Hi. I'm glad you reached out to me for advice. According to last month, "
-                  "your income was $800 dollars and your expenses were $700 dollars. Of that, "
-                  "$500 dollars you spent on miscellaneous categories, $100 dollars on regular payments, "
-                  "and $100 dollars on savings.")
-print(res)
+while True:
+    phrase_begin = input("You can put data: ")
+    result = build_phrase(phrase_begin)
+    print(result)
+    if phrase_begin.lower == "stop":
+        break
