@@ -64,7 +64,7 @@ def buildPhrase(texts, max_len=150):
 
 
 res = buildPhrase("Hi. I'm glad you reached out to me for advice. According to last month, "
-                  "your income was $400 dollars and your expenses were $200 dollars. Of that, "
-                  "$100 dollars you spent on miscellaneous categories, $50 dollars on regular payments, "
-                  "and $50 dollars on savings.")
+                  "your income was $800 dollars and your expenses were $700 dollars. Of that, "
+                  "$500 dollars you spent on miscellaneous categories, $100 dollars on regular payments, "
+                  "and $100 dollars on savings.")
 print(res)
