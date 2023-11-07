@@ -72,7 +72,7 @@ def build_phrase(texts, max_len=500):
 
 # res = build_phrase("Hi. I'm glad you reached out to me for advice. According to last month, your income was $2355 dollars "
 #                    "and your expenses were $1234 dollars. Of the $223 dollars you spent on miscellaneous categories, "
-#                    "$777 dollars in recurring payments and $234 dollars in savings, I think")
+#                    "$777 dollars in recurring payments and $234 dollars in savings, I think:")
 # print(res)
 
 while True:
