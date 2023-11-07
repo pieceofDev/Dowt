@@ -15,10 +15,10 @@ with open('text.txt', 'r', encoding='utf-8') as f:
     texts = f.read()
     texts = texts.replace('\ufeff', '')  # Удаление ненужных символов
 
-maxWordsCount = 5000
+maxWordsCount = 21000
 
 # Обновленная конфигурация токенизатора
-tokenizer = Tokenizer(num_words=maxWordsCount, filters='!–—#$%&()*+-/:;<=>?@[\\]^_{|}~\t\n\r«»',
+tokenizer = Tokenizer(num_words=maxWordsCount, filters='',
                       lower=True, split=' ', char_level=False)
 tokenizer.fit_on_texts([texts])
 
@@ -30,7 +30,7 @@ print(dist[:10])
 data = tokenizer.texts_to_sequences([texts])
 res = data[0]
 
-inp_words = 3
+inp_words = 40
 n = len(res) - inp_words
 
 X = np.array([res[i:i + inp_words] for i in range(n)])
@@ -70,9 +70,14 @@ def build_phrase(texts, max_len=500):
     return output
 
 
+# res = build_phrase("Hi. I'm glad you came to me for advice. As of last month, your income was $2355 dollars "
+#                    "and your expenses were $1234 dollars. Of the $223 dollars they returned in various categories, "
+#                    "$777 dollars in recurring payments and $234 dollars in savings, I think")
+# print(res)
+
 while True:
     phrase_begin = input("You can put data: ")
     result = build_phrase(phrase_begin)
     print(result)
-    if phrase_begin.lower == "stop":
+    if phrase_begin.lower() == "stop":
         break
