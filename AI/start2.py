@@ -2,6 +2,8 @@ import os
 
 import numpy as np
 
+import random
+
 from keras.layers import Dense, Embedding
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
@@ -45,7 +47,7 @@ model.summary()
 
 model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
 
-history = model.fit(X, Y, batch_size=32, epochs=150)
+history = model.fit(X, Y, batch_size=32, epochs=50)
 
 
 def build_phrase(texts, max_len=500):
@@ -70,14 +72,41 @@ def build_phrase(texts, max_len=500):
     return output
 
 
+
 # res = build_phrase("Hi. I'm glad you reached out to me for advice. According to last month, your income was $2355 dollars "
 #                    "and your expenses were $1234 dollars. Of the $223 dollars you spent on miscellaneous categories, "
 #                    "$777 dollars in recurring payments and $234 dollars in savings, I think:")
 # print(res)
 
+
 while True:
-    phrase_begin = input("You can put data: ")
-    result = build_phrase(phrase_begin)
-    print(result)
-    if phrase_begin.lower() == "stop":
+    incomes = int(input('Input your income: '))
+    expenses = int(input('Input your expenses: '))
+    categories = int(input('Input your spent on miscellaneous categories: '))
+    recurring_expenses = int(input('Input your spent on recurring payments: '))
+    savings = int(input('Input your spent on savings: '))
+    # Изменил список на множество (скобки), потому-что множество более оптимизировано, а также мы можем просто брать первый элемент из него, он всегда будет разным, это особенность питона, потому-что во множестве не важно в каком порядке стоят элементы
+    advices_zero = {
+        ""
+        ""
+        ""
+    }
+
+    advices_incomes = {
+        ""
+        ""
+        ""
+    }
+
+    if any([i.lower == "stop" for i in [incomes, expenses, categories, recurring_expenses, savings]]):
         break
+
+    if incomes == 0 and expenses == 0:
+        print(advices_zero[0])
+    elif incomes > 0 and expenses == 0:
+        print(advices_incomes[0])
+    else:
+        res = build_phrase(f"Hi. I'm glad you reached out to me for advice. According to last month, your income was ${incomes} dollars "
+              f"and your expenses were ${expenses} dollars. Of the ${categories} dollars you spent on miscellaneous categories, "
+              f"${recurring_expenses} dollars in recurring payments and ${savings} dollars in savings, I think:")
+        print(res)
