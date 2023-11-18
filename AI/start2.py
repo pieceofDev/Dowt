@@ -104,6 +104,6 @@ while True:
         print(random.choice(advices_incomes))
     else:
         res = build_phrase(f"Hi. I'm glad you reached out to me for advice. According to last month, your income was ${incomes} dollars "
-              f"and your expenses were ${expenses} dollars. Of the ${categories} dollars you spent on miscellaneous categories, "
+              f"and your expenses were ${expenses} dollars. Of that ${categories} dollars you spent on miscellaneous categories, "
               f"${recurring_expenses} dollars in recurring payments and ${savings} dollars in savings, I think:")
         print(res)
