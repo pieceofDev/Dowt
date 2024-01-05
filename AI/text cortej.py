@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 
+
 def find_matching_lines(file_content):
     # Dictionary to store the lines with their corresponding sets of numbers
     numbers_dict = defaultdict(list)
