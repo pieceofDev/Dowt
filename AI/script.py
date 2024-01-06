@@ -7,7 +7,7 @@ def replace_saving_with_goals(file_path):
         # Разделяем строку на две части: до и после "I think:"
         parts = line.split("I think:")
         # Заменяем "saving" на "goals" только в первой части
-        parts[0] = parts[0].replace("goalss", "goals")
+        parts[0] = parts[0].replace("they returned", "you spent")
         # Объединяем части обратно
         updated_line = "I think:".join(parts)
         updated_lines.append(updated_line)
