@@ -14,7 +14,7 @@ with open('text.txt', 'r', encoding='utf-8') as f:
     texts = f.read()
     texts = texts.replace('\ufeff', '')
 
-maxWordsCount = 122000
+maxWordsCount = 250000
 tokenizer = Tokenizer(num_words=maxWordsCount, filters='',
                       lower=True, split=' ', char_level=False)
 tokenizer.fit_on_texts([texts])
