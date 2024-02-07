@@ -40,7 +40,7 @@ model.summary()
 
 model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
 
-history = model.fit(X, Y, batch_size=64, epochs=35)
+history = model.fit(X, Y, batch_size=64, epochs=60)
 
 
 def build_phrase(texts, max_len=500):
